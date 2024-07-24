@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="champagne">#EDE2C2</color>
+    <color name="muted_champagne">#B19F8A</color>
+    <color name="rose_ebony">#563C38</color>
+
+</resources>

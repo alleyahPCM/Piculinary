@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Piculinary</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="camera">Camera</string>
+    <string name="sea_background">sea background</string>
+    <string name="table">table</string>
+    <string name="sign">sign</string>
+    <string name="about_us">About us</string>
+    <string name="history">History</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="phone">phone</string>
+    <string name="menu">menu</string>
+    <string name="about_aaron">about Aaron</string>
+    <string name="about_piculinary">about Piculinary</string>
+    <string name="about_alleyah">about Alleyah</string>
+    <string name="notebook">notebook</string>
+    <string name="arrow_back">arrow back</string>
+    <string name="piculinary_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="about">About</string>
+    <string name="title">Title</string>
+    <string name="contact_us">Contact us</string>
+    <string name="piculinary_gmail_com"><u>piculinary@gmail.com</u></string>
+    <string name="contact_information">CONTACT INFORMATION</string>
+    <string name="alleyah_picture">Alleyah picture</string>
+    <string name="picture_frame">picture frame</string>
+    <string name="full_name_alleyah_pauline_c_manalili">Full Name: Alleyah Pauline C. Manalili</string>
+    <string name="email_21100049_usc_edu_ph_apmmanalili_gmail_com">Email: <u>21100049@usc.edu.ph</u>, <u>apmmanalili@gmail.com</u></string>
+    <string name="personal_information">PERSONAL INFORMATION</string>
+    <string name="age_21">Age: 21</string>
+    <string name="citizenship_nationality_filipino">Citizenship/Nationality: Filipino</string>
+    <string name="gender_female">Gender: Female</string>
+    <string name="language_proficiency">Language Proficiency:</string>
+    <string name="language_proficiency_list">&#8226; English (Written and Verbal)\n&#8226; Cebuano (Verbal)\n&#8226; Tagalog (Written and Verbal)</string>
+    <string name="computer_pms_and_software_skills">Computer PMS and Software Skills:</string>
+    <string name="skills_list">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
+        Web Development (HTML, CSS, JavaScript, React, VueJS, Laravel)\n&#8226; Database Management (MySQL, MSSQL)\n&#8226; Version Control Systems and Collaboration (Git, GitHub)
+        \n&#8226; Mobile Application Development (Android Studio, Xamarin)</string>
+
+</resources>

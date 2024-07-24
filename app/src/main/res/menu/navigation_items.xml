@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/cameraId"
+        android:icon="@drawable/camera"
+        android:title="@string/camera"/>
+
+    <item android:id="@+id/cuisineId"
+        android:icon="@drawable/cuisine"
+        android:title="@string/cuisine"/>
+
+    <item android:id="@+id/historyId"
+        android:icon="@drawable/history"
+        android:title="@string/history"/>
+
+    <item android:id="@+id/aboutUsId"
+        android:icon="@drawable/about_us"
+        android:title="@string/about_us"/>
+</menu>
