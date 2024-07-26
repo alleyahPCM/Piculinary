@@ -71,28 +71,23 @@
         app:layout_constraintStart_toStartOf="@id/guideline7"
         app:layout_constraintTop_toBottomOf="@id/guideline9" />
 
-    <!-- Content -->
-    <ScrollView
+
+
+            
+    <GridView
+        android:id="@+id/history_album_grid"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:numColumns="2"
+        android:paddingTop="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline16"
         app:layout_constraintEnd_toStartOf="@id/guideline14"
         app:layout_constraintStart_toStartOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline15">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp">
-            
-            <GridView
-                android:id="@+id/history_album_grid"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:numColumns="2"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </GridView>
+
 
     <!-- Guidelines: Sign -->
     <androidx.constraintlayout.widget.Guideline
