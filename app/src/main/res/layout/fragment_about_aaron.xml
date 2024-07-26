@@ -10,42 +10,39 @@
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/sea_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/sea_background"
-        android:contentDescription="@string/sea_background"/>
+        android:src="@drawable/sea_background" />
 
     <!-- Arrow Back -->
     <ImageView
         android:id="@+id/arrowBack"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/baseline_arrow_back_24"
         android:contentDescription="@string/arrow_back"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
         app:layout_constraintEnd_toStartOf="@id/guideline11"
         app:layout_constraintStart_toStartOf="@id/guideline7"
-        app:layout_constraintTop_toBottomOf="@id/guideline12"
-        app:layout_constraintBottom_toTopOf="@id/guideline4"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline12" />
 
     <!-- Sign Image -->
     <ImageView
         android:id="@+id/sign"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/sign"
         android:src="@drawable/sign"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/guideline3"
-        app:layout_constraintBottom_toTopOf="@id/guideline4"
-        android:contentDescription="@string/sign"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline3" />
 
     <!-- Sign Text -->
     <TextView
         android:id="@+id/about_us_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:autoSizeMaxTextSize="1000dp"
-        app:autoSizeMinTextSize="1dp"
-        app:autoSizeTextType="uniform"
         android:shadowColor="#1A000000"
         android:shadowDx="0"
         android:shadowDy="4"
@@ -55,6 +52,9 @@
         android:textColor="@color/rose_ebony"
         android:textSize="28sp"
         android:translationY="5dp"
+        app:autoSizeMaxTextSize="1000dp"
+        app:autoSizeMinTextSize="1dp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guideline4"
         app:layout_constraintEnd_toStartOf="@id/guideline6"
         app:layout_constraintStart_toStartOf="@id/guideline5"
@@ -65,12 +65,246 @@
         android:id="@+id/notebook"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/notebook"
         android:src="@drawable/notebook"
+        app:layout_constraintBottom_toTopOf="@id/guideline10"
         app:layout_constraintEnd_toStartOf="@id/guideline8"
         app:layout_constraintStart_toStartOf="@id/guideline7"
-        app:layout_constraintTop_toBottomOf="@id/guideline9"
-        app:layout_constraintBottom_toTopOf="@id/guideline10"
-        android:contentDescription="@string/notebook"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline9" />
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline16"
+        app:layout_constraintEnd_toStartOf="@id/guideline14"
+        app:layout_constraintStart_toStartOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="@id/guideline15">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp">
+
+            <!-- Contact Information -->
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/picture_template"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/contact_information_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/contact_information"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/contact_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/aaron_full_name"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/contact_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aaron_email"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/picture_template"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/linearLayout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Picture -->
+                <ImageView
+                    android:id="@+id/picture"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/aaron_picture"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/aaron_picture"
+                    app:layout_constraintBottom_toTopOf="@id/guideline19"
+                    app:layout_constraintEnd_toStartOf="@id/guideline18"
+                    app:layout_constraintStart_toStartOf="@id/guideline17"
+                    app:layout_constraintTop_toBottomOf="@id/guideline20" />
+
+                <!-- Frame -->
+                <ImageView
+                    android:id="@+id/frame"
+                    android:layout_width="78dp"
+                    android:layout_height="88dp"
+                    android:contentDescription="@string/picture_frame"
+                    android:src="@drawable/frame"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Guidelines: Picture -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.11" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.88" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.8" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.09" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Personal Information -->
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+                <TextView
+                    android:id="@+id/personal_information_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/personal_information"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/aaron_age"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/citizenship"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/aaron_gender"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/language_proficiency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language_proficiency"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/language_proficiency_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aaron_language_proficiency"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/rose_ebony"/>
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/computer_pms_and_software_skills"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/skills_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aaron_skills"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/rose_ebony"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <!-- Guidelines: Sign -->
     <androidx.constraintlayout.widget.Guideline
@@ -129,7 +363,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96" />
+        app:layout_constraintGuide_percent="0.963" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -145,8 +379,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.88" />
 
-
-    <!-- Arrow Back -->
+    <!-- Guidelines: Arrow Back -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
@@ -160,5 +393,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.026" />
+
+    <!-- Guidelines: Content -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.91" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

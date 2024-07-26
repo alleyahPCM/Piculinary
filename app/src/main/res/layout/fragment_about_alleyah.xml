@@ -72,187 +72,239 @@
         app:layout_constraintStart_toStartOf="@id/guideline7"
         app:layout_constraintTop_toBottomOf="@id/guideline9" />
 
-    <!-- Contact Information -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <!-- Content -->
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/guideline16"
         app:layout_constraintEnd_toStartOf="@id/guideline14"
         app:layout_constraintStart_toStartOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline15">
 
-        <TextView
-            android:id="@+id/contact_information_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/contact_information"
-            android:textColor="@color/rose_ebony"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+            android:paddingTop="5dp">
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/contact_full_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/full_name_alleyah_pauline_c_manalili"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+            <!-- Contact Information -->
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/picture_template"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/contact_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email_21100049_usc_edu_ph_apmmanalili_gmail_com"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/contact_information_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/contact_information"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
 
-    <!-- Personal Information -->
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@id/guideline24"
-        app:layout_constraintStart_toStartOf="@id/guideline13"
-        app:layout_constraintTop_toBottomOf="@id/guideline25">
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/contact_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/alleyah_full_name"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
 
-        <TextView
-            android:id="@+id/personal_information_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/personal_information"
-            android:textColor="@color/rose_ebony"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+                <TextView
+                    android:id="@+id/contact_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alleyah_email"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/age_21"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/picture_template"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/linearLayout"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/nationality"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/citizenship_nationality_filipino"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+                <!-- Picture -->
+                <ImageView
+                    android:id="@+id/picture"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/alleyah_picture"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/alleyah_picture"
+                    app:layout_constraintBottom_toTopOf="@id/guideline19"
+                    app:layout_constraintEnd_toStartOf="@id/guideline18"
+                    app:layout_constraintStart_toStartOf="@id/guideline17"
+                    app:layout_constraintTop_toBottomOf="@id/guideline20" />
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:text="@string/gender_female"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+                <!-- Frame -->
+                <ImageView
+                    android:id="@+id/frame"
+                    android:layout_width="78dp"
+                    android:layout_height="88dp"
+                    android:contentDescription="@string/picture_frame"
+                    android:src="@drawable/frame"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/language_proficiency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/language_proficiency"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+                <!-- Guidelines: Picture -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.11" />
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/language_proficiency_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/language_proficiency_list"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform"
-            android:paddingBottom="6dp"
-            android:textColor="@color/rose_ebony"/>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.88" />
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/skills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/computer_pms_and_software_skills"
-            android:textColor="@color/rose_ebony"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.8" />
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/skills_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/skills_list"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="16sp"
-            app:autoSizeMaxTextSize="1000dp"
-            app:autoSizeMinTextSize="1dp"
-            app:autoSizeTextType="uniform"
-            android:paddingBottom="6dp"
-            android:textColor="@color/rose_ebony"/>
-    </LinearLayout>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.09" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Picture -->
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/alleyah_picture"
-        android:scaleType="centerCrop"
-        android:src="@drawable/alleyah_picture"
-        app:layout_constraintBottom_toTopOf="@id/guideline19"
-        app:layout_constraintEnd_toStartOf="@id/guideline18"
-        app:layout_constraintStart_toStartOf="@id/guideline17"
-        app:layout_constraintTop_toBottomOf="@id/guideline20" />
+            <!-- Personal Information -->
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
-    <!-- Frame -->
-    <ImageView
-        android:id="@+id/frame"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/picture_frame"
-        android:src="@drawable/frame"
-        app:layout_constraintBottom_toTopOf="@id/guideline23"
-        app:layout_constraintEnd_toStartOf="@id/guideline22"
-        app:layout_constraintStart_toStartOf="@id/guideline21"
-        app:layout_constraintTop_toBottomOf="@id/guideline15" />
+                <TextView
+                    android:id="@+id/personal_information_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/personal_information"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
 
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/alleyah_age"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/citizenship"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:text="@string/alleyah_gender"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/language_proficiency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language_proficiency"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/language_proficiency_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alleyah_language_proficiency"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/rose_ebony"/>
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/computer_pms_and_software_skills"
+                    android:textColor="@color/rose_ebony"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/skills_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alleyah_skills"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="1dp"
+                    app:autoSizeTextType="uniform"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/rose_ebony"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <!-- Guidelines: Sign -->
     <androidx.constraintlayout.widget.Guideline
@@ -342,7 +394,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.026" />
 
-    <!-- Guidelines: Contact Information -->
+    <!-- Guidelines: Content -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
         android:layout_width="wrap_content"
@@ -355,7 +407,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.678" />
+        app:layout_constraintGuide_percent="0.91" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
@@ -366,79 +418,6 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38" />
-
-    <!-- Guidelines: Picture -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.712" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.883" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.325" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.242" />
-
-    <!-- Guidelines: Frame -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.685" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.91" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <!-- Guidelines: Personal Information -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.88" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
