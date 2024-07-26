@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Piculinary</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_home">Home</string>
@@ -41,10 +41,10 @@
     <string name="alleyah_language_proficiency">&#8226; English (Written and Verbal)\n&#8226; Cebuano (Verbal)\n&#8226; Tagalog (Written and Verbal)</string>
     <string name="aaron_language_proficiency">&#8226; English (Written and Verbal)\n&#8226; Cebuano (Written and Verbal)\n&#8226; Tagalog (Written and Verbal)</string>
     <string name="computer_pms_and_software_skills">Computer PMS and Software Skills:</string>
-    <string name="alleyah_skills">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
+    <string name="alleyah_skills" tools:ignore="TypographyOther">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
         Web Development (HTML, CSS, JavaScript, React, VueJS, Laravel)\n&#8226; Database Management (MySQL, MSSQL)\n&#8226; Version Control Systems and Collaboration (Git, GitHub)
         \n&#8226; Mobile Application Development (Android Studio, Xamarin)</string>
-    <string name="aaron_skills">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java, C#)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
+    <string name="aaron_skills" tools:ignore="TypographyOther">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java, C#)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
         Web Development (HTML, CSS, JavaScript, React, VueJS, Laravel)\n&#8226; Database Management (MySQL)\n&#8226; Mobile Application Development (Android Studio, Xamarin)</string>
     <string name="aaron_picture">Aaron Picture</string>
 
