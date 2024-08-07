@@ -47,5 +47,6 @@
     <string name="aaron_skills" tools:ignore="TypographyOther">&#8226; Procedural Programming (C)\n&#8226; Object-Oriented Programming (Java, C#)\n&#8226; Multiparadigm Programming (Python)\n&#8226;
         Web Development (HTML, CSS, JavaScript, React, VueJS, Laravel)\n&#8226; Database Management (MySQL)\n&#8226; Mobile Application Development (Android Studio, Xamarin)</string>
     <string name="aaron_picture">Aaron Picture</string>
+    <string name="tap_to_start">Tap to Start</string>
 
 </resources>
