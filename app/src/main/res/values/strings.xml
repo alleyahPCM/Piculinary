@@ -60,4 +60,6 @@
     <string name="percent">%</string>
     <string name="confidence_level">Confidence Level:</string>
     <string name="results">Results</string>
+    <string name="arrow_left">Arrow Left</string>
+    <string name="arrow_right">Arrow Right</string>
 </resources>

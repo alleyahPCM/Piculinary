@@ -64,6 +64,13 @@ public class CuisineSpecificFood extends Fragment {
         // Set the formatted text to the TextView
         instructionsTextView.setText(instructionsFormatted.toString().trim());
 
+        // Find the back button and set the click listener
+        ImageView backButton = view.findViewById(R.id.arrowBack);
+        backButton.setOnClickListener(v -> {
+            // Go back to the previous page/fragment
+            ((MainActivity) requireActivity()).navigateToFragment(new CuisineListView());
+        });
+
         return view;
     }
 }

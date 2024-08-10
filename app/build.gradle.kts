@@ -47,4 +47,5 @@ dependencies {
 
     // Add the JustifiedTextView dependency
     implementation ("com.codesgood:justifiedtextview:1.1.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 }

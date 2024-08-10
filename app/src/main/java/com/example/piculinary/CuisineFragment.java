@@ -26,7 +26,7 @@ public class CuisineFragment extends Fragment {
         // Set up a click listener on the entire view
         view.setOnClickListener(v -> {
             // Perform navigation to the next fragment
-            ((MainActivity) requireActivity()).navigateToFragment(new CuisineSpecificFood());
+            ((MainActivity) requireActivity()).navigateToFragment(new CuisineListView());
         });
     }
 }
