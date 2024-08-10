@@ -3,8 +3,8 @@ package com.example.piculinary;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-//import android.graphics.Bitmap;
-//import android.net.Uri;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -41,10 +41,10 @@ public class CameraFragment extends Fragment {
                         Intent data = result.getData();
                         if (data != null) {
                             Bundle extras = data.getExtras();
-//                            if (extras != null) {
-//                                Bitmap imageBitmap = (Bitmap) extras.get("data");
-//                                // Handle the image from the camera
-//                            }
+                            if (extras != null) {
+                                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                                // Handle the image from the camera
+                            }
                         }
                     }
                 });
@@ -55,10 +55,10 @@ public class CameraFragment extends Fragment {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-//                        if (data != null) {
-//                            Uri selectedImage = data.getData();
-//                            // Handle the image from the gallery
-//                        }
+                        if (data != null) {
+                            Uri selectedImage = data.getData();
+                            // Handle the image from the gallery
+                        }
                     }
                 });
 
