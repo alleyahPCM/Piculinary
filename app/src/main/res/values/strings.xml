@@ -48,5 +48,16 @@
         Web Development (HTML, CSS, JavaScript, React, VueJS, Laravel)\n&#8226; Database Management (MySQL)\n&#8226; Mobile Application Development (Android Studio, Xamarin)</string>
     <string name="aaron_picture">Aaron Picture</string>
     <string name="tap_to_start">Tap to Start</string>
-
+    <string name="category">Category:</string>
+    <string name="category_name">Category Name</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="ingredients_list">&#8226; Ingredient 1</string>
+    <string name="instructions">Instructions:</string>
+    <string name="instructions_list">1. Step 1</string>
+    <string name="next_recipe">Next Recipe</string>
+    <string name="cookbook_website_name">Cookbook Website Name</string>
+    <string name="cuisine_picture">Cuisine Picture</string>
+    <string name="percent">%</string>
+    <string name="confidence_level">Confidence Level:</string>
+    <string name="results">Results</string>
 </resources>

@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,32 +21,8 @@ import android.widget.ImageView;
 
 public class CameraFragment extends Fragment {
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_camera, container, false);
-//    }
-//
-//
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        // Set up a click listener on the entire view
-//        view.setOnClickListener(v -> {
-//            // Perform navigation to the next fragment
-////            ((MainActivity) requireActivity()).navigateToFragment(new HistoryAlbumFragment());
-//            Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            startActivityForResult(open_camera, 100);
-//        });
-//    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Bitmap photo = (Bitmap)data.getExtras().get("data");
-//        image
-//    }
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,44 +34,55 @@ public class CameraFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize the camera launcher
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Bundle extras = data.getExtras();
+                            if (extras != null) {
+                                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                                // Handle the image from the camera
+                            }
+                        }
+                    }
+                });
+
+        // Initialize the gallery launcher
+        galleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Uri selectedImage = data.getData();
+                            // Handle the image from the gallery
+                        }
+                    }
+                });
+
         // Set up a click listener on the entire view
         view.setOnClickListener(v -> showImageSourceDialog());
     }
 
+    // Method to show the dialog for selecting image source
     private void showImageSourceDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Select Image Source")
                 .setItems(new CharSequence[]{"Camera", "Gallery"}, (dialog, which) -> {
                     switch (which) {
                         case 0: // Camera
-                            Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(open_camera, 100);
+                            Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            cameraLauncher.launch(openCamera);
                             break;
                         case 1: // Gallery
                             Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(pickPhoto , 200);
+                            galleryLauncher.launch(pickPhoto);
                             break;
                     }
                 });
         builder.create().show();
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case 100: // Camera
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    // Handle the image from the camera
-                    break;
-                case 200: // Gallery
-                    Uri selectedImage = data.getData();
-                    // Handle the image from the gallery
-                    break;
-            }
-        }
-    }
-
 }

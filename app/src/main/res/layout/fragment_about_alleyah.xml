@@ -99,7 +99,7 @@
                     android:id="@+id/contact_information_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/contact_information"
                     android:textColor="@color/rose_ebony"
                     android:textSize="20sp"
@@ -112,7 +112,7 @@
                     android:id="@+id/contact_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/alleyah_full_name"
                     android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
@@ -199,7 +199,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="12dp"
+                android:paddingTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout">
@@ -208,7 +208,7 @@
                     android:id="@+id/personal_information_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/personal_information"
                     android:textColor="@color/rose_ebony"
                     android:textSize="20sp"
@@ -221,7 +221,7 @@
                     android:id="@+id/age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/alleyah_age"
                     android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
@@ -233,7 +233,7 @@
                     android:id="@+id/nationality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/citizenship"
                     android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
@@ -245,7 +245,7 @@
                     android:id="@+id/gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/alleyah_gender"
                     android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
@@ -268,14 +268,14 @@
                     android:id="@+id/language_proficiency_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:text="@string/alleyah_language_proficiency"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
                     app:autoSizeMaxTextSize="1000dp"
                     app:autoSizeMinTextSize="1dp"
-                    app:autoSizeTextType="uniform"
-                    android:paddingBottom="6dp"
-                    android:textColor="@color/rose_ebony"/>
+                    app:autoSizeTextType="uniform" />
 
                 <com.codesgood.views.JustifiedTextView
                     android:id="@+id/skills"
@@ -294,12 +294,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/alleyah_skills"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/rose_ebony"
                     android:textSize="16sp"
                     app:autoSizeMaxTextSize="1000dp"
                     app:autoSizeMinTextSize="1dp"
-                    app:autoSizeTextType="uniform"
-                    android:paddingBottom="6dp"
-                    android:textColor="@color/rose_ebony"/>
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
