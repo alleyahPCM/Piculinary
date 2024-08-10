@@ -3,8 +3,8 @@ package com.example.piculinary;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
+//import android.graphics.Bitmap;
+//import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,34 +33,34 @@ public class CameraFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        // Initialize the camera launcher
-//        cameraLauncher = registerForActivityResult(
-//                new ActivityResultContracts.StartActivityForResult(),
-//                result -> {
-//                    if (result.getResultCode() == Activity.RESULT_OK) {
-//                        Intent data = result.getData();
-//                        if (data != null) {
-//                            Bundle extras = data.getExtras();
+        // Initialize the camera launcher
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Bundle extras = data.getExtras();
 //                            if (extras != null) {
 //                                Bitmap imageBitmap = (Bitmap) extras.get("data");
 //                                // Handle the image from the camera
 //                            }
-//                        }
-//                    }
-//                });
-//
-//        // Initialize the gallery launcher
-//        galleryLauncher = registerForActivityResult(
-//                new ActivityResultContracts.StartActivityForResult(),
-//                result -> {
-//                    if (result.getResultCode() == Activity.RESULT_OK) {
-//                        Intent data = result.getData();
+                        }
+                    }
+                });
+
+        // Initialize the gallery launcher
+        galleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
 //                        if (data != null) {
 //                            Uri selectedImage = data.getData();
 //                            // Handle the image from the gallery
 //                        }
-//                    }
-//                });
+                    }
+                });
 
         // Set up a click listener on the entire view
         view.setOnClickListener(v -> showImageSourceDialog());
