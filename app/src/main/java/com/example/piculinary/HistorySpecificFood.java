@@ -69,12 +69,9 @@ public class HistorySpecificFood extends Fragment {
 
         // Find the back button and set the click listener
         ImageView backButton = view.findViewById(R.id.arrowBack);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Go back to the previous page/fragment
-                ((MainActivity) requireActivity()).navigateToFragment(new HistoryAlbumFragment());
-            }
+        backButton.setOnClickListener(v -> {
+            // Go back to the previous page/fragment
+            ((MainActivity) requireActivity()).navigateToFragment(new HistoryAlbumFragment());
         });
 
         return view;

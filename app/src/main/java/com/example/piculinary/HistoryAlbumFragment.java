@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 
 import com.example.piculinary.databinding.FragmentHistoryAlbumBinding;
 
@@ -36,12 +35,7 @@ public class HistoryAlbumFragment extends Fragment {
         HistoryGridAdapter historyGridAdapter = new HistoryGridAdapter(getActivity(), cuisineName, cuisineImage);
         binding.historyAlbumGrid.setAdapter(historyGridAdapter);
 
-        binding.historyAlbumGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ((MainActivity) requireActivity()).navigateToFragment(new HistorySpecificFood());
-            }
-        });
+        binding.historyAlbumGrid.setOnItemClickListener((adapterView, view1, i, l) -> ((MainActivity) requireActivity()).navigateToFragment(new HistorySpecificFood()));
 
         return view;
     }
