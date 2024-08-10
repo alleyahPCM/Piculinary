@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.example.piculinary"
         minSdk = 22
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -46,6 +47,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     // Add the JustifiedTextView dependency
-    implementation ("com.codesgood:justifiedtextview:1.1.0")
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation (libs.justifiedtextview)
+    implementation (libs.recyclerview)
 }

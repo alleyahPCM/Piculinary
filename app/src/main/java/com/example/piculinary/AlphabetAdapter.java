@@ -1,5 +1,6 @@
 package com.example.piculinary;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class AlphabetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.dataChangedListener = listener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filterByCategory(String category) {
         itemList.clear();
         if ("All".equals(category)) {
