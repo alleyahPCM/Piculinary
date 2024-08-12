@@ -16,6 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/history_picture"
+            android:contentDescription="@string/cuisine_image"
             android:src="@drawable/image_template"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@id/guideline4"
@@ -27,6 +28,7 @@
             android:layout_width="140dp"
             android:layout_height="160dp"
             android:id="@+id/frame"
+            android:contentDescription="@string/frame"
             android:src="@drawable/frame"
             tools:ignore="MissingConstraints" />
 
@@ -34,6 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/delete_btn"
+            android:contentDescription="@string/delete_button"
             android:src="@drawable/delete"
             app:layout_constraintBottom_toTopOf="@id/guideline8"
             app:layout_constraintEnd_toStartOf="@id/guideline6"
