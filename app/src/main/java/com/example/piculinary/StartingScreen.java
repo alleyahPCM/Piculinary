@@ -1,6 +1,8 @@
 package com.example.piculinary;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -10,7 +12,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.piculinary.Utils.NetworkChangeListener;
+
 public class StartingScreen extends AppCompatActivity {
+
+    private NetworkChangeListener nc = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +43,16 @@ public class StartingScreen extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(nc, filter);
+        super.onStart();
+    }
 
+    @Override
+    protected void onStop() {
+        unregisterReceiver(nc);
+        super.onStop();
+    }
 }

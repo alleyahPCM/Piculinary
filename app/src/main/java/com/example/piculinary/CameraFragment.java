@@ -1,27 +1,70 @@
 package com.example.piculinary;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
+import java.io.File;
 
 public class CameraFragment extends Fragment {
 
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
+    private String currentPermission;
+    private Uri imageUri;
+
+    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if (result) {
+                        if (currentPermission.equals(Manifest.permission.CAMERA)) {
+                            Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            imageUri = createImageUri(getActivity());
+                            openCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                            cameraLauncher.launch(openCamera);
+                        } else if (currentPermission.equals(Manifest.permission.READ_EXTERNAL_STORAGE) || currentPermission.equals(Manifest.permission.READ_MEDIA_IMAGES)) {
+                            Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            galleryLauncher.launch(openGallery);
+                        }
+                    } else {
+                        String permissionMessage = currentPermission.equals(Manifest.permission.CAMERA) ?
+                                "Camera permission is required to take photos." :
+                                "Gallery permission is required to access photos.";
+                        Toast.makeText(getActivity(), permissionMessage, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
+
+    private Uri createImageUri(Context context) {
+        File imageFolder = new File(context.getExternalFilesDir(null), "images");
+        if (!imageFolder.exists()) {
+            imageFolder.mkdirs();
+        }
+        File file = new File(imageFolder, "captured_image.jpg");
+        return FileProvider.getUriForFile(context, "com.example.piculinary.provider", file);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,14 +81,9 @@ public class CameraFragment extends Fragment {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null) {
-                            Bundle extras = data.getExtras();
-                            if (extras != null) {
-                                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                                // Handle the image from the camera
-                            }
-                        }
+                        Intent intent = new Intent(getActivity(), DisplayResult.class);
+                        intent.putExtra("image_data", imageUri.toString());
+                        startActivity(intent);
                     }
                 });
 
@@ -57,7 +95,9 @@ public class CameraFragment extends Fragment {
                         Intent data = result.getData();
                         if (data != null) {
                             Uri selectedImage = data.getData();
-                            // Handle the image from the gallery
+                            Intent intent = new Intent(getActivity(), DisplayResult.class);
+                            intent.putExtra("image_data", selectedImage.toString());
+                            startActivity(intent);
                         }
                     }
                 });
@@ -73,10 +113,24 @@ public class CameraFragment extends Fragment {
                 .setItems(new CharSequence[]{"Camera", "Gallery"}, (dialog, which) -> {
                     switch (which) {
                         case 0: // Camera
-                            Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            cameraLauncher.launch(openCamera);
+                            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                currentPermission = Manifest.permission.CAMERA;
+                                requestPermissionLauncher.launch(currentPermission);
+                            } else {
+                                imageUri = createImageUri(getActivity());
+                                Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                openCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                                cameraLauncher.launch(openCamera);
+                            }
                             break;
                         case 1: // Gallery
+//                            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                                currentPermission = Manifest.permission.READ_EXTERNAL_STORAGE;
+//                                requestPermissionLauncher.launch(currentPermission);
+//                            } else {
+//                                Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                                galleryLauncher.launch(pickPhoto);
+//                            }
                             Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             galleryLauncher.launch(pickPhoto);
                             break;

@@ -1,5 +1,7 @@
 package com.example.piculinary;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -8,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.piculinary.Utils.NetworkChangeListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import android.util.SparseArray;
 
 public class MainActivity extends AppCompatActivity {
+
+    private NetworkChangeListener nc = new NetworkChangeListener();
 
     private FrameLayout frameLayout;
     private BottomNavigationView bottomNavigationView;
@@ -58,5 +63,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void navigateToFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(nc, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(nc);
+        super.onStop();
     }
 }
