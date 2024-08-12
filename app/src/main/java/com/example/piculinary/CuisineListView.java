@@ -111,7 +111,7 @@ public class CuisineListView extends Fragment {
         for (String section : sortedSections) {
             TextView indexLetter = new TextView(getContext());
             indexLetter.setText(section);
-            indexLetter.setPadding(16, 16, 16, 16); // Adjust padding as needed
+            indexLetter.setPadding(12, 12, 12, 12); // Adjust padding as needed
             indexLetter.setTextSize(16); // Adjust text size as needed
             indexLetter.setTextColor(Color.parseColor("#593D3B"));
             indexLetter.setOnClickListener(v -> scrollToSection(section));
@@ -138,7 +138,7 @@ public class CuisineListView extends Fragment {
         for (String section : sortedSections) {
             TextView indexLetter = new TextView(getContext());
             indexLetter.setText(section);
-            indexLetter.setPadding(16, 16, 16, 16); // Adjust padding as needed
+            indexLetter.setPadding(12, 12, 12, 12); // Adjust padding as needed
             indexLetter.setTextSize(16); // Adjust text size as needed
             indexLetter.setTextColor(Color.parseColor("#593D3B"));
             indexLetter.setOnClickListener(v -> scrollToSection(section));

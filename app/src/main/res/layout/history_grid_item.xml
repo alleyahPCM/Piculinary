@@ -24,8 +24,8 @@
             app:layout_constraintTop_toBottomOf="@id/guideline3"/>
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="180dp"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
             android:id="@+id/frame"
             android:src="@drawable/frame"
             tools:ignore="MissingConstraints" />
