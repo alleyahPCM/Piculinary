@@ -98,6 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:contentDescription="@string/cuisine_picture"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/image_template"
                     app:layout_constraintBottom_toTopOf="@id/guideline19"
                     app:layout_constraintEnd_toStartOf="@id/guideline18"
