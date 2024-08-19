@@ -40,7 +40,7 @@ public class CameraFragment extends Fragment {
                     if (result) {
                         if (currentPermission.equals(Manifest.permission.CAMERA)) {
                             Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            imageUri = createImageUri(getActivity());
+                            imageUri = createImageUri(requireActivity());
                             openCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                             cameraLauncher.launch(openCamera);
                         } else if (currentPermission.equals(Manifest.permission.READ_EXTERNAL_STORAGE) || currentPermission.equals(Manifest.permission.READ_MEDIA_IMAGES)) {
@@ -142,11 +142,11 @@ public class CameraFragment extends Fragment {
                 .setItems(new CharSequence[]{"Camera", "Gallery"}, (dialog, which) -> {
                     switch (which) {
                         case 0: // Camera
-                            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                                 currentPermission = Manifest.permission.CAMERA;
                                 requestPermissionLauncher.launch(currentPermission);
                             } else {
-                                imageUri = createImageUri(getActivity());
+                                imageUri = createImageUri(requireActivity());
                                 Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 openCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                                 cameraLauncher.launch(openCamera);

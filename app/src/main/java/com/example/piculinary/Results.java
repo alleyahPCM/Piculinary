@@ -101,7 +101,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
@@ -173,9 +172,7 @@ public class Results extends Fragment {
 
                         });
                     })
-                    .addOnFailureListener(e -> {
-                        Log.e("Upload Error", Objects.requireNonNull(e.getMessage()));
-                    });
+                    .addOnFailureListener(e -> Log.e("Upload Error", Objects.requireNonNull(e.getMessage())));
         }
     }
 
@@ -306,7 +303,7 @@ public class Results extends Fragment {
     }
 
     public static Uri decodeUri(Context c, Uri uri, final int requiredSize)
-            throws FileNotFoundException, IOException {
+            throws IOException {
         // First, decode with inJustDecodeBounds=true to check dimensions
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
