@@ -77,15 +77,33 @@ public class CameraFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize the camera launcher
+//        cameraLauncher = registerForActivityResult(
+//                new ActivityResultContracts.StartActivityForResult(),
+//                result -> {
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                        Intent intent = new Intent(getActivity(), DisplayResult.class);
+//                        intent.putExtra("image_data", imageUri.toString());
+//                        startActivity(intent);
+//                    }
+//                });
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent intent = new Intent(getActivity(), DisplayResult.class);
-                        intent.putExtra("image_data", imageUri.toString());
-                        startActivity(intent);
+                        Results displayResultFragment = new Results();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("image_data", imageUri.toString());
+                        displayResultFragment.setArguments(bundle);
+
+//                        requireActivity().getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.frameLayout, displayResultFragment)
+//                                .addToBackStack(null)
+//                                .commit();
+                        ((MainActivity) requireActivity()).navigateToFragment(displayResultFragment);
+
                     }
-                });
+                }
+        );
 
         // Initialize the gallery launcher
         galleryLauncher = registerForActivityResult(
@@ -95,9 +113,19 @@ public class CameraFragment extends Fragment {
                         Intent data = result.getData();
                         if (data != null) {
                             Uri selectedImage = data.getData();
-                            Intent intent = new Intent(getActivity(), DisplayResult.class);
-                            intent.putExtra("image_data", selectedImage.toString());
-                            startActivity(intent);
+//                            Intent intent = new Intent(getActivity(), DisplayResult.class);
+//                            intent.putExtra("image_data", selectedImage.toString());
+//                            startActivity(intent);
+                            Results displayResultFragment = new Results();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("image_data", selectedImage.toString());
+                            displayResultFragment.setArguments(bundle);
+
+//                            requireActivity().getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.frameLayout, displayResultFragment)
+//                                    .addToBackStack(null)
+//                                    .commit();
+                            ((MainActivity) requireActivity()).navigateToFragment(displayResultFragment);
                         }
                     }
                 });
