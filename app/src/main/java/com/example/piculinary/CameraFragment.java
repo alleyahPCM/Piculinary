@@ -32,7 +32,7 @@ public class CameraFragment extends Fragment {
     private String currentPermission;
     private Uri imageUri;
 
-    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             new ActivityResultCallback<Boolean>() {
                 @Override
@@ -118,6 +118,7 @@ public class CameraFragment extends Fragment {
 //                            startActivity(intent);
                             Results displayResultFragment = new Results();
                             Bundle bundle = new Bundle();
+                            assert selectedImage != null;
                             bundle.putString("image_data", selectedImage.toString());
                             displayResultFragment.setArguments(bundle);
 

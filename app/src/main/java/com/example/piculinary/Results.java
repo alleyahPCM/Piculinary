@@ -114,10 +114,9 @@ import okhttp3.Response;
 
 public class Results extends Fragment {
 
-    private NetworkChangeListener nc = new NetworkChangeListener();
-    private OkHttpClient client = new OkHttpClient();
+    private final NetworkChangeListener nc = new NetworkChangeListener();
+    private final OkHttpClient client = new OkHttpClient();
     private ProgressDialog dialog;
-    private Uri imageUri;
 
     @Nullable
     @Override
@@ -139,7 +138,7 @@ public class Results extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Retrieve the image data
-        imageUri = Uri.parse(requireArguments().getString("image_data"));
+        Uri imageUri = Uri.parse(requireArguments().getString("image_data"));
 
         ImageView imageView = view.findViewById(R.id.cuisine_picture);
         imageView.setImageURI(imageUri);
@@ -199,6 +198,7 @@ public class Results extends Fragment {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
                 // Get the response body
+                assert response.body() != null;
                 String responseBody = response.body().string();
                 try {
                     JSONObject jsonResponse = new JSONObject(responseBody);
@@ -211,7 +211,7 @@ public class Results extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("Network Error", e.getMessage());
+                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
             }
         }).start();
     }
@@ -268,6 +268,7 @@ public class Results extends Fragment {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
                 // Get the response body
+                assert response.body() != null;
                 String responseBody = response.body().string();
                 String trimmed = responseBody.substring(23, responseBody.length() - 3);
                 String[] data = trimmed.split(",", 2);
@@ -285,7 +286,7 @@ public class Results extends Fragment {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("Network Error", e.getMessage());
+                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
             }
         }).start();
     }
@@ -331,6 +332,7 @@ public class Results extends Fragment {
         Bitmap rotatedBitmap;
         Matrix matrix = new Matrix();
         matrix.postRotate(90);
+        assert bitmap != null;
         rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
         // Save the rotated bitmap to a temporary file and return its URI
