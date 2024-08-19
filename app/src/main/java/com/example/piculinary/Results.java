@@ -132,6 +132,7 @@ public class Results extends Fragment {
         return view;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -207,8 +208,9 @@ public class Results extends Fragment {
                     throw new RuntimeException(e);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
+//                e.printStackTrace();
+//                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
+                Log.e("Network Error", "An IO exception occurred", e);
             }
         }).start();
     }
@@ -282,8 +284,9 @@ public class Results extends Fragment {
                 });
 
             } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
+//                e.printStackTrace();
+//                Log.e("Network Error", Objects.requireNonNull(e.getMessage()));
+                Log.e("Network Error", "An IO exception occurred", e);
             }
         }).start();
     }

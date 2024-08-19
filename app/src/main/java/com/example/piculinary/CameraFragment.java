@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,14 +58,32 @@ public class CameraFragment extends Fragment {
             }
     );
 
+//    private Uri createImageUri(Context context) {
+//        File imageFolder = new File(context.getExternalFilesDir(null), "images");
+//        if (!imageFolder.exists()) {
+//            imageFolder.mkdirs();
+//        }
+//        File file = new File(imageFolder, "captured_image.jpg");
+//        return FileProvider.getUriForFile(context, "com.example.piculinary.provider", file);
+//    }
+
     private Uri createImageUri(Context context) {
         File imageFolder = new File(context.getExternalFilesDir(null), "images");
-        if (!imageFolder.exists()) {
-            imageFolder.mkdirs();
+
+        // Attempt to create the directory
+        boolean directoriesCreated = imageFolder.mkdirs();
+
+        // Log the result for debugging purposes
+        if (!directoriesCreated && !imageFolder.exists()) {
+            Log.e("ImageUriCreation", "Failed to create directory: " + imageFolder.getAbsolutePath());
+            return null; // Return null or handle the error as appropriate
         }
+
+        // Create the file and return its URI
         File file = new File(imageFolder, "captured_image.jpg");
         return FileProvider.getUriForFile(context, "com.example.piculinary.provider", file);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
