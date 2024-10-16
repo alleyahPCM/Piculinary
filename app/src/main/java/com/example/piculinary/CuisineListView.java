@@ -50,7 +50,7 @@ public class CuisineListView extends Fragment {
                 new RecipeItem("Bibingka", "Snack"),
                 new RecipeItem("Biko", "Snack"),
                 new RecipeItem("Binignit", "Snack"),
-                new RecipeItem("Brazo de Mercedez", "Dessert"),
+                new RecipeItem("Brazo de Mercedes", "Dessert"),
                 new RecipeItem("Caldereta", "Main Dish"),
                 new RecipeItem("Dinugu-an", "Main Dish"),
                 new RecipeItem("Dried Mangoes", "Snack"),

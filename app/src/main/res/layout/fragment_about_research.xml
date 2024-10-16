@@ -116,6 +116,18 @@
         app:layout_constraintStart_toStartOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline18" />
 
+    <!-- Gmail logo -->
+    <ImageView
+        android:id="@+id/gmail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/gmail_icon"
+        android:src="@drawable/gmail"
+        app:layout_constraintBottom_toTopOf="@id/guideline21"
+        app:layout_constraintEnd_toStartOf="@id/guideline22"
+        app:layout_constraintStart_toStartOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="@id/guideline20" />
+
     <!-- Contact us -->
     <TextView
         android:id="@+id/contact_us_text"
@@ -132,23 +144,12 @@
         app:layout_constraintStart_toStartOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
-    <!-- Gmail logo -->
-    <ImageView
-        android:id="@+id/gmail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/title"
-        android:src="@drawable/gmail"
-        app:layout_constraintBottom_toTopOf="@id/guideline21"
-        app:layout_constraintEnd_toStartOf="@id/guideline22"
-        app:layout_constraintStart_toStartOf="@id/guideline13"
-        app:layout_constraintTop_toBottomOf="@id/guideline20" />
-
     <!-- Piculinary Gmail -->
     <TextView
         android:id="@+id/piculinary_gmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
         android:text="@string/piculinary_gmail_com"
         android:textColor="@color/rose_ebony"
         android:textSize="16sp"
@@ -156,7 +157,7 @@
         app:autoSizeMinTextSize="1dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guideline21"
-        app:layout_constraintStart_toStartOf="@id/guideline23"
+        app:layout_constraintStart_toEndOf="@+id/gmail"
         app:layout_constraintTop_toBottomOf="@id/guideline20" />
 
     <!-- Guidelines: Sign -->
@@ -253,14 +254,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.12" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
@@ -282,7 +283,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.88" />
+        app:layout_constraintGuide_percent="0.82" />
 
     <!-- Guidelines: Content -->
     <androidx.constraintlayout.widget.Guideline
@@ -320,7 +321,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_percent="0.22" />
 
     <!-- Guidelines: Gmail -->
     <androidx.constraintlayout.widget.Guideline
