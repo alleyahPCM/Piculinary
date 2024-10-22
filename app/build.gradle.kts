@@ -51,10 +51,10 @@ dependencies {
     implementation (libs.justifiedtextview)
     implementation (libs.recyclerview)
 
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.okhttp)
 //    implementation("com.android.volley:volley:1.2.1")
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation ("com.google.firebase:firebase-storage:21.0.0")
-    implementation ("com.google.firebase:firebase-firestore")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation (libs.firebase.storage.v2101)
+    implementation (libs.firebase.firestore)
 }
