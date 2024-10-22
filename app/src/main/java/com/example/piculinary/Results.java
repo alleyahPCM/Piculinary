@@ -1,80 +1,6 @@
-//package com.example.piculinary;
-//
-//import android.os.Bundle;
-//
-//import androidx.fragment.app.Fragment;
-//
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//
-//import java.util.Arrays;
-//import java.util.List;
-//
-//public class Results extends Fragment {
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.fragment_results, container, false);
-//
-//        // Retrieve the JustifiedTextView instances
-//        TextView cuisineNameTextView = view.findViewById(R.id.cuisine_name);
-//        TextView percentageTextView = view.findViewById(R.id.percentage);
-//        TextView categoryNameTextView = view.findViewById(R.id.category_name);
-//        TextView websiteNameTextView = view.findViewById(R.id.cookbook_website_name);
-//
-//        String CuisineName = "Lechon de Cebu";
-//        String Percentage = "90%";
-//        String CategoryName = "Main Dish";
-//        String WebsiteName = "yummy.ph";
-//
-//        cuisineNameTextView.setText(CuisineName);
-//        percentageTextView.setText(Percentage);
-//        categoryNameTextView.setText(CategoryName);
-//        websiteNameTextView.setText(WebsiteName);
-//
-//        // Retrieve the ImageView instance
-//        ImageView imageView = view.findViewById(R.id.cuisine_picture);
-//
-//        int imageResource = R.drawable.image_template;
-//        imageView.setImageResource(imageResource);
-//
-//        List<String> ingredients = Arrays.asList("Ingredient 1", "Ingredient 2", "Ingredient 3");
-//        TextView ingredientsTextView = view.findViewById(R.id.ingredients_list);
-//
-//        // Prepare the formatted ingredients list with bullet points
-//        StringBuilder ingredientsFormatted = new StringBuilder();
-//        for (String ingredient : ingredients) {
-//            ingredientsFormatted.append("• ").append(ingredient).append("\n");
-//        }
-//
-//        // Set the formatted text to the TextView
-//        ingredientsTextView.setText(ingredientsFormatted.toString().trim());
-//
-//
-//        List<String> instructions = Arrays.asList("Step 1", "Step 2", "Step 3");
-//        TextView instructionsTextView = view.findViewById(R.id.instructions_list);
-//
-//        // Prepare the formatted ingredients list with numbers
-//        StringBuilder instructionsFormatted = new StringBuilder();
-//        for (int i = 0; i < ingredients.size(); i++) {
-//            instructionsFormatted.append(i + 1).append(". ").append(instructions.get(i)).append("\n");
-//        }
-//
-//        // Set the formatted text to the TextView
-//        instructionsTextView.setText(instructionsFormatted.toString().trim());
-//
-//        return view;
-//    }
-//}
-
 package com.example.piculinary;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -88,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -122,7 +49,6 @@ public class Results extends Fragment {
 
     private final NetworkChangeListener nc = new NetworkChangeListener();
     private final OkHttpClient client = new OkHttpClient();
-    private ProgressDialog dialog;
     private int currentRecipeIndex = 0; // Track the current recipe index
     private List<QueryDocumentSnapshot> availableRecipes; // Store the available recipes
 
@@ -141,7 +67,6 @@ public class Results extends Fragment {
         return view;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -152,8 +77,14 @@ public class Results extends Fragment {
         ImageView imageView = view.findViewById(R.id.cuisine_picture);
         imageView.setImageURI(imageUri);
 
-        dialog = ProgressDialog.show(getActivity(), "",
-                "Loading. Please wait...", true);
+        ProgressBar loadingSpinner = view.findViewById(R.id.loading_spinner);
+        ScrollView scrollView = view.findViewById(R.id.scrollView);
+        ImageView nextButton = view.findViewById(R.id.next);
+
+        loadingSpinner.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE); // Hide ScrollView initially
+        nextButton.setVisibility(View.GONE);
+
         uploadImageToFirebase(imageUri);
     }
 
@@ -224,41 +155,6 @@ public class Results extends Fragment {
         }).start();
     }
 
-//    private void getImageData(String event_id) {
-//
-//        // Build the URL with the query parameter
-//        String url = "https://rieze-cebuanocuisine.hf.space/call/predict/" + event_id;
-//
-//        // Build the request
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .get()
-//                .build();
-//
-//        // Execute the request in a background thread
-//        new Thread(() -> {
-//            try (Response response = client.newCall(request).execute()) {
-//                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-//
-//                // Get the response body
-//                String responseBody = response.body().string();
-//                String trimmed = responseBody.substring(23, responseBody.length() - 3);
-//                String[] data = trimmed.split(",", 2);
-//                String cuis = data[0].trim().replace("\"", "");
-//                String per = data[1].trim().replace("\"", "") + "%";
-//                TextView cuisine = requireView().findViewById(R.id.cuisine_name);
-//                TextView percentage = requireView().findViewById(R.id.percentage);
-//                cuisine.setText(cuis);
-//                percentage.setText(per);
-//                dialog.dismiss();
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                Log.e("Network Error", e.getMessage());
-//            }
-//        }).start();
-//    }
-
     @SuppressLint("SetTextI18n")
     private void getImageData(String event_id) {
 
@@ -286,28 +182,39 @@ public class Results extends Fragment {
 
                 // Update UI on the main thread
                 requireActivity().runOnUiThread(() -> {
+                    ProgressBar loadingSpinner = requireView().findViewById(R.id.loading_spinner);
+                    ScrollView scrollView = requireView().findViewById(R.id.scrollView);
+                    ImageView nextButton = requireView().findViewById(R.id.next);
+
                     TextView cuisine = requireView().findViewById(R.id.cuisine_name);
                     TextView percentage = requireView().findViewById(R.id.percentage);
-                    cuisine.setText(cuis);
-                    percentage.setText(per);
+                    // Use a local variable inside the lambda
+                    String cuisineName;
+                    if ("Brazo de Mercedez".equalsIgnoreCase(cuis)) {
+                        cuisineName = "Brazo de Mercedes";
+                    } else {
+                        cuisineName = cuis;
+                    }
 
-                    ScrollView scrollView = requireView().findViewById(R.id.scrollView);
+                    // Set the text with the modified value
+                    cuisine.setText(cuisineName);
+                    percentage.setText(per);
 
                     TextView categoryNameTextView = requireView().findViewById(R.id.category_name);
                     TextView websiteNameTextView = requireView().findViewById(R.id.cookbook_website_name);
                     TextView ingredientsTextView = requireView().findViewById(R.id.ingredients_list);
                     TextView instructionsTextView = requireView().findViewById(R.id.instructions_list);
-                    ImageView nextButton = requireView().findViewById(R.id.next);
-
-                    nextButton.setVisibility(View.GONE);
 
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                     // Fetch the recipes based on the cuisine name
+                    String finalCuisineName = cuisineName;
                     db.collection("recipeCollection")
-                            .whereEqualTo("cuisine_name", cuis)
+                            .whereEqualTo("cuisine_name", finalCuisineName)
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
+                                loadingSpinner.setVisibility(View.GONE);
+                                scrollView.setVisibility(View.VISIBLE);
 
                                 if (queryDocumentSnapshots.isEmpty()) {
                                     // Handle case where no documents are found
@@ -338,7 +245,7 @@ public class Results extends Fragment {
                                 }
 
                                 // Display the first recipe
-                                displayRecipe(availableRecipes.get(currentRecipeIndex), cuisine, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
+                                displayRecipe(availableRecipes.get(currentRecipeIndex), finalCuisineName, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
                             })
                             .addOnFailureListener(e -> {
                                 // Handle the error
@@ -358,7 +265,7 @@ public class Results extends Fragment {
                                 }
 
                                 // Display the next recipe
-                                displayRecipe(availableRecipes.get(currentRecipeIndex), cuisine, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
+                                displayRecipe(availableRecipes.get(currentRecipeIndex), finalCuisineName, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
 
                                 // Scroll to the top of the ScrollView
                                 scrollView.scrollTo(0, 0);
@@ -371,8 +278,7 @@ public class Results extends Fragment {
                         }
                     });
 
-
-                    dialog.dismiss();
+//                    dialog.dismiss();
                 });
 
             } catch (IOException e) {
@@ -442,7 +348,7 @@ public class Results extends Fragment {
         return Uri.fromFile(tempFile); // Return the URI of the saved file
     }
 
-    private void displayRecipe(QueryDocumentSnapshot document, TextView cuisine, TextView categoryNameTextView, TextView websiteNameTextView, TextView ingredientsTextView, TextView instructionsTextView) {
+    private void displayRecipe(QueryDocumentSnapshot document, String cuisine, TextView categoryNameTextView, TextView websiteNameTextView, TextView ingredientsTextView, TextView instructionsTextView) {
         String categoryName = document.getString("category");
         String websiteName = document.getString("source_name");
         List<String> ingredients = (List<String>) document.get("ingredients");
@@ -455,7 +361,7 @@ public class Results extends Fragment {
         boolean isUnderHeader = false; // Track if we are under an all-caps header
 
         assert ingredients != null;
-        if ("Lechon de Cebu".equals(cuisine)) {
+        if ("Lechon de Cebu".equalsIgnoreCase(cuisine)) {
             // Special formatting for "Lechon de Cebu"
             for (String ingredient : ingredients) {
                 // Check if the ingredient is in all caps (section header)
