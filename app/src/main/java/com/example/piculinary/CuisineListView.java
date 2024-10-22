@@ -156,9 +156,25 @@ public class CuisineListView extends Fragment {
         }
     }
 
+//    private void onItemClicked(RecipeItem item) {
+//        // Example of navigating to another fragment
+//        ((MainActivity) requireActivity()).navigateToFragment(new CuisineSpecificFood()); // Replace CuisineSpecificFood with the target fragment
+//    }
+
+
     private void onItemClicked(RecipeItem item) {
-        // Example of navigating to another fragment
-        ((MainActivity) requireActivity()).navigateToFragment(new CuisineSpecificFood()); // Replace CuisineSpecificFood with the target fragment
+        // Create a new instance of the CuisineSpecificFood fragment
+        CuisineSpecificFood fragment = new CuisineSpecificFood();
+
+        // Prepare the bundle to pass the cuisine name
+        Bundle bundle = new Bundle();
+        bundle.putString("CuisineName", item.getName());  // Pass the cuisine name
+
+        // Set the bundle as arguments for the fragment
+        fragment.setArguments(bundle);
+
+        // Navigate to the fragment
+        ((MainActivity) requireActivity()).navigateToFragment(fragment);
     }
 
     private void setupCategoryNavigation(View view) {
