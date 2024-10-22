@@ -1,5 +1,6 @@
 package com.example.piculinary;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ public class CuisineSpecificFood extends Fragment {
     private int currentRecipeIndex = 0; // Track the current recipe index
     private List<QueryDocumentSnapshot> availableRecipes; // Store the available recipes
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -131,10 +133,10 @@ public class CuisineSpecificFood extends Fragment {
         categoryNameTextView.setText(categoryName);
         websiteNameTextView.setText(websiteName);
 
-        // Prepare the ingredients list
         StringBuilder ingredientsFormatted = new StringBuilder();
         boolean isUnderHeader = false; // Track if we are under an all-caps header
 
+        assert ingredients != null;
         if ("Lechon de Cebu".equals(cuisineName)) {
             // Special formatting for "Lechon de Cebu"
             for (String ingredient : ingredients) {
@@ -147,7 +149,7 @@ public class CuisineSpecificFood extends Fragment {
                 } else {
                     // Add the regular ingredient
                     if (isUnderHeader) {
-                        ingredientsFormatted.append("\t\u2192 ").append(ingredient).append("\n"); // Indented bullet
+                        ingredientsFormatted.append("\t→ ").append(ingredient).append("\n"); // Indented bullet
                     } else {
                         ingredientsFormatted.append("• ").append(ingredient).append("\n"); // Regular bullet if not under a header
                     }
@@ -164,7 +166,7 @@ public class CuisineSpecificFood extends Fragment {
 
 // Prepare the instructions list
         StringBuilder instructionsFormatted = new StringBuilder();
-        for (int i = 0; i < instructions.size(); i++) {
+        for (int i = 0; i < (instructions != null ? instructions.size() : 0); i++) {
             instructionsFormatted.append(i + 1).append(". ").append(instructions.get(i)).append("\n"); // Add an extra newline
         }
         instructionsTextView.setText(instructionsFormatted.toString().trim());
