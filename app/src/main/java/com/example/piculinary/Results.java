@@ -87,6 +87,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -94,6 +95,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.piculinary.Utils.NetworkChangeListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -103,6 +106,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import okhttp3.MediaType;
@@ -116,6 +122,8 @@ public class Results extends Fragment {
     private final NetworkChangeListener nc = new NetworkChangeListener();
     private final OkHttpClient client = new OkHttpClient();
     private ProgressDialog dialog;
+    private int currentRecipeIndex = 0; // Track the current recipe index
+    private List<QueryDocumentSnapshot> availableRecipes; // Store the available recipes
 
     @Nullable
     @Override
@@ -280,6 +288,88 @@ public class Results extends Fragment {
                     TextView percentage = requireView().findViewById(R.id.percentage);
                     cuisine.setText(cuis);
                     percentage.setText(per);
+
+                    ScrollView scrollView = requireView().findViewById(R.id.scrollView);
+
+                    TextView categoryNameTextView = requireView().findViewById(R.id.category_name);
+                    TextView websiteNameTextView = requireView().findViewById(R.id.cookbook_website_name);
+                    TextView ingredientsTextView = requireView().findViewById(R.id.ingredients_list);
+                    TextView instructionsTextView = requireView().findViewById(R.id.instructions_list);
+                    ImageView nextButton = requireView().findViewById(R.id.next);
+
+                    nextButton.setVisibility(View.GONE);
+
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                    // Fetch the recipes based on the cuisine name
+                    db.collection("recipeCollection")
+                            .whereEqualTo("cuisine_name", cuis)
+                            .get()
+                            .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                                if (queryDocumentSnapshots.isEmpty()) {
+                                    // Handle case where no documents are found
+                                    cuisine.setText("No recipe found");
+                                    return;
+                                }
+
+                                // Filter recipes based on the specified order
+                                List<String> preferredSources = Arrays.asList(
+                                        "Panlasang Pinoy", "Kawaling Pinoy",
+                                        "Pinoy Recipe At Iba Pa", "tasteatlas", "Fresh Off The Grid"
+                                );
+                                availableRecipes = new ArrayList<>();
+
+                                for (String source : preferredSources) {
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        if (source.equals(document.getString("source_name"))) {
+                                            availableRecipes.add(document);
+                                            break; // Break to ensure only the first matching recipe is added
+                                        }
+                                    }
+                                }
+
+                                if (availableRecipes.size() <= 1) {
+                                    nextButton.setVisibility(View.GONE); // Hide next button if there's only one recipe
+                                } else {
+                                    nextButton.setVisibility(View.VISIBLE); // Show next button if multiple recipes exist
+                                }
+
+                                // Display the first recipe
+                                displayRecipe(availableRecipes.get(currentRecipeIndex), cuisine, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
+                            })
+                            .addOnFailureListener(e -> {
+                                // Handle the error
+                                cuisine.setText("Error fetching recipe");
+                            });
+
+                    nextButton.setOnClickListener(v -> {
+                        try {
+                            // Ensure that availableRecipes is not null or empty before proceeding
+                            if (availableRecipes != null && !availableRecipes.isEmpty()) {
+                                // Move to the next recipe
+                                currentRecipeIndex++;
+
+                                // Ensure index is within bounds
+                                if (currentRecipeIndex >= availableRecipes.size()) {
+                                    currentRecipeIndex = 0; // Loop back to the first recipe
+                                }
+
+                                // Display the next recipe
+                                displayRecipe(availableRecipes.get(currentRecipeIndex), cuisine, categoryNameTextView, websiteNameTextView, ingredientsTextView, instructionsTextView);
+
+                                // Scroll to the top of the ScrollView
+                                scrollView.scrollTo(0, 0);
+                            } else {
+                                Log.e("Recipe Error", "No recipes available to display");
+                            }
+                        } catch (Exception e) {
+                            Log.e("ButtonClickError", "Error occurred when clicking Next button", e);
+                            e.printStackTrace(); // Logs the full error stack trace
+                        }
+                    });
+
+
                     dialog.dismiss();
                 });
 
@@ -348,5 +438,54 @@ public class Results extends Fragment {
         }
 
         return Uri.fromFile(tempFile); // Return the URI of the saved file
+    }
+
+    private void displayRecipe(QueryDocumentSnapshot document, TextView cuisine, TextView categoryNameTextView, TextView websiteNameTextView, TextView ingredientsTextView, TextView instructionsTextView) {
+        String categoryName = document.getString("category");
+        String websiteName = document.getString("source_name");
+        List<String> ingredients = (List<String>) document.get("ingredients");
+        List<String> instructions = (List<String>) document.get("instructions");
+
+        categoryNameTextView.setText(categoryName);
+        websiteNameTextView.setText(websiteName);
+
+        StringBuilder ingredientsFormatted = new StringBuilder();
+        boolean isUnderHeader = false; // Track if we are under an all-caps header
+
+        assert ingredients != null;
+        if ("Lechon de Cebu".equals(cuisine)) {
+            // Special formatting for "Lechon de Cebu"
+            for (String ingredient : ingredients) {
+                // Check if the ingredient is in all caps (section header)
+                if (ingredient.equals(ingredient.toUpperCase())) {
+                    // Add the section header with a main bullet
+                    ingredientsFormatted.append("• ").append(ingredient).append("\n");
+                    isUnderHeader = true; // Set to true since this is a header
+
+                } else {
+                    // Add the regular ingredient
+                    if (isUnderHeader) {
+                        ingredientsFormatted.append("\t→ ").append(ingredient).append("\n"); // Indented bullet
+                    } else {
+                        ingredientsFormatted.append("• ").append(ingredient).append("\n"); // Regular bullet if not under a header
+                    }
+                }
+            }
+        } else {
+            // Default formatting for other cuisines
+            for (String ingredient : ingredients) {
+                ingredientsFormatted.append("• ").append(ingredient).append("\n");
+            }
+        }
+        ingredientsTextView.setText(ingredientsFormatted.toString().trim());
+        ingredientsTextView.setLineSpacing(5, 1f);
+
+        // Prepare the instructions list
+        StringBuilder instructionsFormatted = new StringBuilder();
+        for (int i = 0; i < (instructions != null ? instructions.size() : 0); i++) {
+            instructionsFormatted.append(i + 1).append(". ").append(instructions.get(i)).append("\n"); // Add an extra newline
+        }
+        instructionsTextView.setText(instructionsFormatted.toString().trim());
+        instructionsTextView.setLineSpacing(5, 1f);
     }
 }

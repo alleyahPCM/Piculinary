@@ -164,7 +164,7 @@ public class CuisineSpecificFood extends Fragment {
         ingredientsTextView.setText(ingredientsFormatted.toString().trim());
         ingredientsTextView.setLineSpacing(5, 1f);
 
-// Prepare the instructions list
+        // Prepare the instructions list
         StringBuilder instructionsFormatted = new StringBuilder();
         for (int i = 0; i < (instructions != null ? instructions.size() : 0); i++) {
             instructionsFormatted.append(i + 1).append(". ").append(instructions.get(i)).append("\n"); // Add an extra newline
