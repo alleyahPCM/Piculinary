@@ -52,6 +52,7 @@ public class CuisineListView extends Fragment {
                 new RecipeItem("Binignit", "Snack"),
                 new RecipeItem("Brazo de Mercedes", "Dessert"),
                 new RecipeItem("Caldereta", "Main Dish"),
+                new RecipeItem("Crispy Pata", "Main Dish"),
                 new RecipeItem("Dinugu-an", "Main Dish"),
                 new RecipeItem("Dried Mangoes", "Snack"),
                 new RecipeItem("Embotido", "Main Dish"),
@@ -65,10 +66,9 @@ public class CuisineListView extends Fragment {
                 new RecipeItem("Monggos", "Vegetable Dish"),
                 new RecipeItem("Nangka nga Tinuno-an", "Vegetable Dish"),
                 new RecipeItem("Otap", "Snack"),
-                new RecipeItem("Pata", "Main Dish"),
                 new RecipeItem("Sinugba nga Isda", "Main Dish"),
                 new RecipeItem("Utan Bisaya", "Vegetable Dish"),
-                new RecipeItem("Yemas", "Dessert")
+                new RecipeItem("Yema", "Dessert")
         );
 
         adapter = new AlphabetAdapter(data, this::onItemClicked);
