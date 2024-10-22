@@ -73,6 +73,7 @@
 
 package com.example.piculinary;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -258,6 +259,7 @@ public class Results extends Fragment {
 //        }).start();
 //    }
 
+    @SuppressLint("SetTextI18n")
     private void getImageData(String event_id) {
 
         // Build the URL with the query parameter
